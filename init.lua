@@ -28,7 +28,6 @@ tech_api.energy.register_device("tech_api_demo:provider", "default", {
   linkable_faces = {'back', 'top', 'left', 'right', 'bottom'},
   callback = function(pos, dtime, request)
     local produce = math.min(request, 10)
-    minetest.chat_send_all("provider callback")
     minetest.get_meta(pos):set_string("infotext", "request=" .. request .. "EU/t - producing=" .. produce .. "EU/t")
     return produce, 8 -- return energy produced, and ask next callback within 8 time units
   end
@@ -44,7 +43,6 @@ tech_api.energy.register_device("tech_api_demo:storage", "default", {
   capacity = 10000,
   linkable_faces = {'back', 'top', 'left', 'right', 'bottom'},
   callback = function(pos, dtime, storage_info)
-    minetest.chat_send_all("storage callback")
     minetest.get_meta(pos):set_string("infotext", "content=" .. storage_info.content .. "/" .. storage_info.capacity .. "EU - current rate=" .. storage_info.current_rate .. "EU/t")
     return 0, 1 -- next callback (update) in 4 time units
   end
